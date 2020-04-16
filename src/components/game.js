@@ -20,7 +20,7 @@ import {
   scrollSpy,
   scroller,
 } from "react-scroll";
-import Chat from "./chat";
+import Chat from "./chatas";
 
 class Game extends Component {
   constructor(props) {
