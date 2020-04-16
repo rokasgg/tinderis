@@ -11,9 +11,8 @@ import {
   dbase,
   dbaseGetMessages,
 } from "../firebase/firebase";
-import { FaRegPaperPlane } from "react-icons/fa";
 import * as Scroll from "react-scroll";
-import axios from "axios";
+
 import {
   Element,
   Events,
