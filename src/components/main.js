@@ -38,15 +38,25 @@ class Main extends Component {
     const allData = [];
     usersDb.get().then((snap) => {
       snap.docs.forEach((res) => {
-        console.log("8=D");
-        allData.push(res.data());
-        this.setState({ allData }, console.log("(o)(o)", this.state.allData));
+        let usersInfo = res.data();
+
+        if (usersInfo.userId !== this.props.userId) {
+          console.log(this.props.userId, "8=D", usersInfo);
+          allData.push(res.data());
+        }
       });
     });
-
+    this.setState({ allData }, console.log("(o)(o)", this.state.allData));
     setTimeout(() => {
       this.filterDislikedAndLikedCards();
     }, 2000);
+  };
+
+  checkIfDeckNumberIsLow = (deck) => {
+    let decksNumber = deck.length;
+    if (decksNumber < 6) {
+      this.getCards();
+    }
   };
 
   filterDislikedAndLikedCards = async () => {

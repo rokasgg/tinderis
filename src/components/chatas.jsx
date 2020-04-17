@@ -29,7 +29,6 @@ class Chat extends Component {
     };
   }
   componentDidMount() {
-    this.scrollAfterMount();
     this.listenerForNewMessages();
   }
   scrollDown = () => {
@@ -122,6 +121,7 @@ class Chat extends Component {
           }
           nesMessages.sort(compare);
           this.setState({ text_messages: nesMessages });
+          this.scrollAfterMount();
         },
         (err) => {
           console.log("Nepavyko isgauti zinutes", err);
