@@ -6,14 +6,7 @@ import { regEndAction } from "../redux/actions/regEndReducer";
 import { LOG_IF_IN_SYSTEM } from "../redux/actions/logIFinSystem";
 import { dbaseGetMessages } from "../firebase/firebase";
 import { FaRegPaperPlane } from "react-icons/fa";
-import * as Scroll from "react-scroll";
-import {
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll";
+import { scroller } from "react-scroll";
 
 class Chat extends Component {
   constructor(props) {
@@ -173,23 +166,26 @@ class Chat extends Component {
     console.log("paziurim", this.state.text_messages);
     return (
       <div className="chat-box">
-        <div className="chat-container1">
-          <img
-            className="match-message-image"
-            src={this.props.profileInfo ? this.props.profileInfo.image : null}
-            alt="the rock!"
-          />
-        </div>
-        <div className="chat-container2">
-          <div className="chat-profile-text">
-            Name: {this.props.profileInfo.name}
+        <div className="chat-container4">
+          <div className="chat-container1">
+            <img
+              className="match-message-image"
+              src={this.props.profileInfo ? this.props.profileInfo.image : null}
+              alt="the rock!"
+            />
           </div>
-          <div className="chat-profile-text">
-            Age: {this.props.profileInfo ? this.props.profileInfo.age : null}
-          </div>
-          <div className="chat-profile-text">
-            City: {this.props.profileInfo ? this.props.profileInfo.city : null}
-          </div>
+          <div className="chat-container2">
+            <div className="chat-profile-text">
+              Name: {this.props.profileInfo.name}
+            </div>
+            <div className="chat-profile-text">
+              Age: {this.props.profileInfo ? this.props.profileInfo.age : null}
+            </div>
+            <div className="chat-profile-text">
+              City:{" "}
+              {this.props.profileInfo ? this.props.profileInfo.city : null}
+            </div>
+          </div>{" "}
         </div>
         <div className="chat-container3">
           <div className="chat-chatborder" id="name">

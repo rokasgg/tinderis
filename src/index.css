@@ -2,39 +2,65 @@
   background: linear-gradient(rgb(230, 107, 154), #64588f);
   display: flex;
   flex-direction: column;
+
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("../src/assets/bgrnd.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-position: center center;
 }
 .navigation-bar {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 40px;
+
   justify-content: flex-start;
   align-items: center;
-  background-color: #2f2b2b;
-  opacity: 80%;
+  background-color: #470b0b8f;
   color: #ffffff;
 }
+
 .nav-rightside {
   display: flex;
   flex: 1;
   flex-direction: row;
-  align-self: center;
-  justify-self: flex-end;
-  justify-content: flex-end;
-  justify-items: flex-end;
+  align-items: center;
+  justify-content: center;
 
-  margin-right: 100px;
+  background-color: wheat;
+  height: 43px;
+}
+.nav-middleside {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 43px;
+  background-color: rgb(74, 136, 94);
 }
 .nav-leftSide {
   display: flex;
   flex-direction: row;
-
+  background-color: #457b9d;
   flex: 1;
-  margin-left: 100px;
+  height: 43px;
+  justify-content: center;
+  align-items: center;
 }
+
 .nav-item {
-  margin: 10px;
-  background-color: #525252;
+  margin: 0px 10px 0px 10px;
+
+  background-color: rgb(67, 60, 75);
+  border: solid 1px whitesmoke;
   border-radius: 10px;
   width: 100px;
   height: 30px;
@@ -42,64 +68,161 @@
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  text-decoration: none;
 }
 
 .nav-item :hover {
   border-radius: 10px;
-  width: 200px;
-  height: 35px;
+  width: 100%;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
-  background-color: #774545;
+  color: rgb(67, 60, 75);
+  font-size: 30px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
   font-size: large;
   outline-color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.link {
-  outline-color: white;
-  text-decoration: none;
-  color: #ffffff;
-}
 .head {
   justify-content: center;
-  align-self: center;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.checkbtn {
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-hamburger {
+  background-color: #457b9d;
+  flex: 1;
+
+  height: 43px;
+  display: none;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#check {
+  display: block;
+}
+
+@media (max-width: 952px) {
+  .head {
+    font-size: 25px;
+  }
+  .checkbtn {
+    font-size: 29px;
+    display: flex;
+  }
+  .nav-hamburger {
+    display: flex;
+    background-color: #26475c;
+    flex: 1 1 33%;
+  }
+  .nav-leftSide {
+    order: 1;
+    flex: 1 1 33%;
+    padding-left: 0px;
+    justify-content: center;
+    display: flex;
+  }
+
+  .nav-middleside {
+    flex: 1 1 33%;
+  }
+  .nav-rightside {
+    display: none;
+  }
+  .navigation-bar {
+    flex-wrap: wrap;
+    height: 43px;
+  }
+
+  #check:checked ~ #left {
+    display: none;
+  }
+}
+
+.errorMessageDisplay {
+  display: flex;
+  flex: 3;
+
+  width: 50%;
+  justify-content: center;
+  align-items: flex-start;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: large;
 }
 .inputs {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: center;
-  margin-top: 15px;
+  align-items: center;
+
+  flex: 4;
+  width: 300px;
 }
 .loginInpt {
-  width: 250px;
+  width: 270px;
   height: 35px;
   border-radius: 7px;
-  padding-left: 7px;
+  padding-left: 14px;
+  border: none;
+  margin: 5px;
 }
-.passwordInpt {
+
+input:focus {
+  outline: none;
+}
+
+.notValidInput {
+  width: 270px;
+  height: 35px;
+  border-radius: 7px;
+  padding-left: 11.5px;
+  border: none;
+  border: solid 2.5px rgb(230, 43, 43);
+  margin: 5px;
+  /* outline: solid 2.4px red; */
+}
+.firstInputNotValidInput {
   width: 250px;
   height: 35px;
   border-radius: 7px;
   padding-left: 7px;
-  margin-top: 5px;
+  border: solid 2.4px rgb(243, 60, 60);
+}
+
+.passwordInpt {
+  width: 270px;
+  height: 35px;
+  border-radius: 7px;
+  padding-left: 14px;
+  margin: 5px;
+  border: none;
+  background-color: white;
+  color: black;
 }
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-self: center;
-
-  margin: 10px;
+  align-items: flex-start;
+  width: 300px;
+  flex: 2;
 }
 .button {
-  margin-left: 10px;
+  margin: 5px;
   background-color: rgb(67, 60, 75);
 }
 .inputContainer {
@@ -118,47 +241,44 @@
 .cards-list {
   display: flex;
   justify-content: center;
-  background-color: rgba(63, 25, 25, 0.5);
+  align-items: center;
+  background-color: rgba(192, 65, 65, 0.554);
+  /* background-color: rgba(63, 25, 25, 0.5); */
   width: 100%;
-  height: 500px;
+  flex: 1;
 }
 
 .card {
   flex-direction: column;
   position: absolute;
   display: flex;
-  align-self: center;
   width: 250px;
-  height: 380px;
-  border-radius: 35px;
-  background: linear-gradient(#525252, #303b79);
-  border: solid 3px;
-  border-color: #ffffff;
-  shape-outside: margin-box;
-  margin: 10px;
-  transform: rotate(0deg);
+  height: 370px;
+  background: #457b9d;
   pointer-events: none;
+  border-radius: 10px;
 }
 
 .card-image-container {
-  margin-top: 20px;
-  border-radius: 25px;
-  background-color: #ffffff;
-  justify-items: center;
+  display: flex;
   align-self: center;
-  width: 200px;
-  height: 250px;
+  flex: 5;
+  margin-top: 1px;
+  width: 250px;
+
+  justify-content: center;
+  align-items: flex-start;
 }
 .card-image {
-  border-radius: 25px;
+  border-radius: 10px;
   background-color: #ddd6f3;
-  justify-items: center;
-  align-self: center;
-  width: 200px;
-  height: 250px;
+
+  width: 244px;
+  height: 258px;
   object-fit: cover;
-  border: solid 1px;
-  border-color: white;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: solid 1px white;
 }
 .card-text {
   flex-direction: column;
@@ -169,23 +289,21 @@
   color: #ffffff;
 }
 .card-text-container {
-  background-color: rgb(16, 17, 19);
-  opacity: 80%;
-  width: 244px;
-  height: 50px;
-  margin-top: 15px;
-  border-radius: 5px;
+  background-color: rgba(16, 17, 19, 0.465);
+  width: 250px;
+  flex: 1;
+  margin-top: 5px;
   align-self: center;
   justify-content: center;
   flex-direction: column;
   display: flex;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 .card-buttons {
   display: flex;
   flex-direction: row;
-  height: 40px;
+
+  flex: 1;
+  margin-bottom: 5px;
 }
 /* .card:hover {
   opacity: 60%;
@@ -195,25 +313,28 @@
   flex: 1;
 
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   pointer-events: auto;
 }
 .card-button-right {
   display: flex;
   flex: 1;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   pointer-events: auto;
 }
 .oval {
-  width: 50px;
-  height: 32px;
-  border-radius: 40px;
-  border: solid 3px white;
+  width: 121px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #973b3b;
+  background-color: rgba(219, 26, 26, 0.801);
+  color: white;
+  border: solid 1px whitesmoke;
 }
 
 /* .card:hover > .card-button-right {
@@ -222,13 +343,13 @@
   animation-duration: 0.5s;
 } */
 .card-button-right:hover {
-  transform: rotate(10deg);
+  transform: rotate(5deg);
   animation-name: rotate-right;
   animation-duration: 0.3s;
 }
 
 .card-button-left:hover {
-  transform: rotate(-10deg);
+  transform: rotate(-5deg);
   animation-name: rotate-left;
   animation-duration: 0.3s;
 }
@@ -329,7 +450,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(10deg);
+    transform: rotate(5deg);
   }
 }
 @keyframes rotate-left {
@@ -337,135 +458,277 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
   }
-}
-.match-list {
-  padding-top: 20px;
-  padding-left: 20px;
-  display: flex;
-  flex: 1;
-  justify-content: flex-start;
-  background-color: rgba(63, 25, 25, 0.5);
-  width: 100%;
-  height: 500px;
-}
-.match-chat-card {
-  flex-direction: column;
-  display: flex;
-  align-self: flex-start;
-  width: 137px;
-  height: 137px;
-  border-radius: 35px;
-  /* background: linear-gradient(#000000, #000000); */
-  /* border: solid 2px; */
-  border-color: #ffffff;
-  margin: 10px;
-  transform: rotate(0deg);
-}
-.match-chat-image-container {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 135px;
-  height: 110px;
-  margin-top: 3px;
-}
-.match-chat-image {
-  width: 110px;
-  height: 110px;
-  border-radius: 35px;
-  border: solid 2px rgb(255, 255, 255);
-  background-color: #caadad;
-  object-fit: cover;
-}
-.match-chat-text-cotainer {
-  width: 104px;
-  height: 50px;
-
-  border-radius: 5px;
-  align-self: center;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-}
-.match-chat-text {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  font-weight: 400;
-  font-size: 18px;
-  color: #ffffff;
-}
-.match-chat-card:hover {
-  opacity: 40%;
-  cursor: pointer;
 }
 
 /* ---------CHAT BOX STYLE--------------CHAT BOX STYLE-------------CHAT BOX STYLE------------- */
-.chat-box {
-  display: flex;
-  flex: 1;
-  justify-content: flex-start;
-  align-self: center;
-  width: 100%;
 
-  background-color: rgba(63, 25, 25, 0.5);
-  margin-top: 15px;
-}
-.chat-container1 {
-  padding-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 420px;
-  width: 350px;
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.chat-container2 {
-  height: 420px;
-  width: 350px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  flex: 1;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.chat-container3 {
-  margin-right: 20px;
-  height: 420px;
-  width: 350px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  flex: 6;
-  flex-direction: column;
-  background-color: rgba(63, 25, 25, 0.3);
-  border-radius: 20px;
-}
 /* ------PROFILE IMAGE----------------PROFILE IMAGE ---------PROFILE IMAGE--------------- */
-.match-message-image {
-  width: 335px;
-  height: 420px;
-  border-radius: 35px;
-  border: solid 2px rgb(255, 255, 255);
-  background-color: #caadad;
-  object-fit: cover;
+
+@media (max-width: 952px) {
+  .chat-box {
+    display: flex;
+    height: 400px;
+    justify-content: flex-start;
+    align-self: center;
+    width: 100%;
+    background-color: rgba(63, 25, 25, 0.5);
+    margin-top: 15px;
+    flex-wrap: 2;
+    flex-basis: 50%;
+  }
+
+  .chat-container1 {
+    height: 350px;
+
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .chat-container2 {
+    flex: 2;
+
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chat-container3 {
+    margin-right: 20px;
+    height: 380px;
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    background-color: rgba(63, 25, 25, 0.3);
+    border-radius: 20px;
+  }
+  .chat-container4 {
+    display: flex;
+    flex: 1;
+
+    flex-direction: column;
+  }
+  .match-message-image {
+    margin: 5px;
+    width: 235px;
+    height: 300px;
+    border-radius: 35px;
+    border: solid 2px rgb(255, 255, 255);
+    background-color: #caadad;
+    object-fit: cover;
+  }
+  .chat-profile-text {
+    font-size: small;
+    color: whitesmoke;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    margin: 5px;
+  }
+  .chat-text-input {
+    flex: 14;
+    border-radius: 35px;
+    padding-left: 20px;
+    border: solid 2px rgb(255, 255, 255);
+    font-size: medium;
+    font-weight: 700;
+    color: #313030;
+  }
+  .send-icon {
+    size: 15px;
+    width: 25px;
+    height: 25px;
+    color: #313030;
+  }
+  .chat-name {
+    display: flex;
+    color: floralwhite;
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .text_message {
+    display: flex;
+    padding-right: 10px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: small;
+    margin: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+  .text_message_from_match {
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: rgba(218, 35, 35, 0.3);
+
+    border-radius: 10px;
+
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .chat-input-send-icon {
+    flex: 1;
+    border-radius: 35px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  .match-chat-text-message-style {
+    display: flex;
+    color: rgb(248, 248, 248);
+    font-size: 12px;
+    font-weight: 200;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 }
 /* ------PROFILE INFORMATION----------------PROFILE INFORMATION ---------PROFILE INFORMATION--------------- */
-.chat-profile-text {
-  font-size: large;
-  color: whitesmoke;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  margin: 10px;
-}
+
 /* --------CHAT SECTION---------------CHAT SECTION------------------CHAT SECTION------------- */
+@media (min-width: 952px) {
+  .chat-box {
+    display: flex;
+    height: 450px;
+    justify-content: flex-start;
+    align-self: center;
+    width: 100%;
+    background-color: rgba(63, 25, 25, 0.5);
+    margin-top: 15px;
+  }
+
+  .chat-container1 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    height: 420px;
+
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chat-container2 {
+    height: 420px;
+
+    width: 200px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chat-container3 {
+    margin-right: 20px;
+    height: 420px;
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex: 5;
+    flex-direction: column;
+    background-color: rgba(63, 25, 25, 0.3);
+    border-radius: 20px;
+  }
+  .chat-container4 {
+    flex-direction: row;
+    flex: 4;
+    display: flex;
+  }
+  .match-message-image {
+    margin: 10px;
+    width: 335px;
+    height: 420px;
+    border-radius: 35px;
+    border: solid 2px rgb(255, 255, 255);
+    background-color: #caadad;
+    object-fit: cover;
+  }
+  .chat-profile-text {
+    font-size: medium;
+    color: whitesmoke;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    margin: 10px;
+  }
+  .chat-text-input {
+    flex: 14;
+    border-radius: 35px;
+    padding-left: 20px;
+    border: solid 2px rgb(255, 255, 255);
+    font-size: large;
+    font-weight: 700;
+    color: #313030;
+  }
+  .send-icon {
+    size: 20px;
+    width: 30px;
+    height: 30px;
+    color: #313030;
+  }
+  .chat-name {
+    display: flex;
+    color: floralwhite;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .text_message {
+    display: flex;
+    padding-right: 15px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.3);
+
+    margin: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 15px;
+    border-radius: 15px;
+  }
+  .text_message_from_match {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: rgba(218, 35, 35, 0.3);
+
+    border-radius: 15px;
+
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .chat-input-send-icon {
+    flex: 1;
+    border-radius: 35px;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  .match-chat-text-message-style {
+    display: flex;
+    color: rgb(248, 248, 248);
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+}
+
 .chat-chatborder {
   flex: 1;
   display: flex;
@@ -509,69 +772,9 @@
   border-radius: 35px;
   background-color: #ffffff;
 }
-.chat-text-input {
-  flex: 14;
-  border-radius: 35px;
-  padding-left: 20px;
-  border: solid 2px rgb(255, 255, 255);
-  font-size: large;
-  font-weight: 700;
-  color: #313030;
-}
-.chat-input-send-icon {
-  flex: 1;
-  border-radius: 35px;
-  margin-right: 2px;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-}
-.send-icon {
-  size: 20px;
-  width: 30px;
-  height: 30px;
-  color: #313030;
-}
+
 .send-icon:hover {
   opacity: 50%;
-}
-.chat-name {
-  display: flex;
-  color: floralwhite;
-  font-size: 30px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.text_message {
-  display: flex;
-  padding-right: 15px;
-  height: 45px;
-  background-color: rgba(255, 255, 255, 0.3);
-
-  margin: 10px;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 15px;
-  border-radius: 15px;
-}
-.text_message_from_match {
-  height: 45px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  background-color: rgba(218, 35, 35, 0.3);
-
-  border-radius: 15px;
-
-  padding-right: 15px;
-  padding-left: 15px;
-}
-.match-chat-text-message-style {
-  display: flex;
-  color: rgb(248, 248, 248);
-  font-size: 15px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .text-box {
@@ -585,4 +788,32 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.background-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+.flexBox1 {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: #ffffff;
+
+  font-size: 35px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.image-background {
+  background-image: url("../src/assets/bgrnd.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-position: center center;
+  /* Center and scale the image nicely */
 }

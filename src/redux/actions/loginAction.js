@@ -6,12 +6,12 @@ export const LOGGING_IN = (
   navToRegEnd,
   message,
   navigateInToSystem
-) => async dispatch => {
+) => async (dispatch) => {
   try {
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
+      .then((res) => {
         let userId = res.user.uid;
         console.log("sadsa");
         dispatch({
@@ -20,15 +20,15 @@ export const LOGGING_IN = (
             email,
             password,
             userId,
-            loggedIn: true
-          }
+            loggedIn: true,
+          },
         });
         firebaseApp
           .firestore()
           .collection("users")
           .where("email", "==", email)
           .get()
-          .then(res => {
+          .then((res) => {
             if (res.docs.length !== 0) {
               console.log("sad", res);
               navigateInToSystem();
@@ -37,17 +37,17 @@ export const LOGGING_IN = (
             }
           });
       })
-      .catch(err => {
-        console.log("firebase erroras prisijungiant", err.message);
+      .catch((err) => {
+        console.log("firebase erroras prisijungiant", err);
         dispatch({
           type: LOGIN_FAILED,
           payload: {
             email,
             password,
-            loggedIn: false
-          }
+            loggedIn: false,
+          },
         });
-        message(err.message);
+        message(err);
       });
   } catch (err) {
     console.log("erroras prisijungiant try metode", err);
@@ -56,8 +56,8 @@ export const LOGGING_IN = (
       payload: {
         email,
         password,
-        loggedIn: false
-      }
+        loggedIn: false,
+      },
     });
     message();
   }

@@ -1,26 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import "../index.css";
-import { Link } from "react-router-dom";
+import "./cssprof/profile.scss";
+
 import { connect } from "react-redux";
 import { loggingOut } from "../redux/actions/logoutAction";
 import { regEndAction } from "../redux/actions/regEndReducer";
 import { LOG_IF_IN_SYSTEM } from "../redux/actions/logIFinSystem";
-import {
-  firebaseApp,
-  usersDb,
-  dbase,
-  dbaseGetMessages,
-} from "../firebase/firebase";
-import * as Scroll from "react-scroll";
+import { getPropsIfLoggedIn } from "../redux/actions/ifLoggedGetProps";
+import NavigationBar from "./navigationBar";
+import Spinner from "react-bootstrap/Spinner";
+import { firebaseApp, usersDb } from "../firebase/firebase";
 
-import {
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll";
-import Chat from "./chatas";
+// import Chat from "./chatas";
+const Chat = React.lazy(() => import("./chatas"));
 
 class Game extends Component {
   constructor(props) {
@@ -38,91 +30,139 @@ class Game extends Component {
       nesMessages: [],
       wantToChat1: false,
       wantToChat2: false,
+      isItSpinning: false,
     };
   }
 
   componentDidMount() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.props.LOG_IF_IN_SYSTEM(user.email, user.uid);
-        const allData = [];
-        usersDb
-          .doc(user.uid)
-          .collection("matches")
-          .get()
-          .then((snap) => {
-            snap.docs.forEach((res) => {
-              allData.push(res.data());
-              this.setState({ allData });
-            });
-          });
+        this.props.getPropsIfLoggedIn(user.email, user.uid);
+        this.getMatches(user);
       } else {
         console.log("User is logged out");
         this.props.history.push("/");
       }
     });
   }
+
+  navToRegistration = () => {
+    this.props.history.push("/finalReg");
+  };
+
+  navigateToMain = () => {
+    this.props.history.push("/main");
+  };
+
+  startSpinner = () => {
+    this.setState({ isItSpinning: true });
+  };
+  getMatches = (user) => {
+    this.startSpinner();
+    const allData = [];
+    usersDb
+      .doc(user.uid)
+      .collection("matches")
+      .get()
+      .then((snap) => {
+        snap.docs.forEach((res) => {
+          allData.push(res.data());
+        });
+        this.setState({ allData, isItSpinning: false });
+      });
+  };
   logout() {
     this.props.loggingOut(() => this.props.history.push("/"));
   }
+  onRightArrowClick = () => {
+    this.scrolling(document.getElementById("chat"), 300, 500);
+  };
+
+  onLeftClick = () => {
+    this.scrolling(document.getElementById("chat"), -300, 500);
+  };
+
+  scrolling = (element, change, duration) => {
+    let start = element.scrollLeft;
+    let currentTime = 0;
+    let increment = 20;
+
+    console.log("startas", start);
+
+    var animateScroll = function () {
+      currentTime += increment;
+      var val = mathisHardsad(currentTime, start, change, duration);
+      element.scrollLeft = val;
+      if (currentTime < duration) {
+        setTimeout(animateScroll, increment);
+      }
+    };
+    animateScroll();
+  };
 
   render() {
     return (
       <div className="App">
-        <div className="head">Poros</div>
-        <div className="navigation-bar">
-          <div className="nav-leftSide">
-            <div className="nav-item">
-              <Link className="link" to="/main">
-                Pagrindinis
-              </Link>
-            </div>
-            <div className="nav-item" onClick={this.doIt}>
-              Profilis
-            </div>
-            <div className="nav-item">
-              <Link className="link" to="/game">
-                Žinutės
-              </Link>
-            </div>
-          </div>
+        {/* STARTASZ */}
+        <NavigationBar currentPage="messages" logOutas={() => this.logout()} />
+        {/* ENENENENEND */}
 
-          <div className="nav-rightside">
-            <div className="nav-item">
-              <div onClick={() => this.logout()}>Atsijungti</div>
-            </div>
+        <div className="matchs-list">
+          <div
+            className="match-list-left-arrow"
+            onClick={() => this.onLeftClick()}
+          >
+            &#8249;
           </div>
-        </div>
-
-        <div className="welcomeMessage">
-          {this.state.nesMessages
-            ? this.state.nesMessages.map((mes) => {
-                return <div>{mes.textMessage} ./</div>;
-              })
-            : null}
-        </div>
-        <div className="match-list">
-          {this.state.allData.length > 0
-            ? this.state.allData.map((profile) => {
+          <div className="list-of-match-row" id="chat">
+            {this.state.allData.length > 0 ? (
+              this.state.allData.map((profile) => {
                 return match_cards(this, profile);
               })
-            : "Sarasas tuscias"}
+            ) : (
+              <div
+                className="match-cards"
+                style={{
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  color: "white",
+                }}
+              >
+                {this.state.isItSpinning ? (
+                  <Spinner animation="grow" variant="light" size="sm" />
+                ) : (
+                  "Sarasas tuscias"
+                )}
+              </div>
+            )}
+          </div>
+          <div
+            className="match-list-right-arrow"
+            onClick={() => this.onRightArrowClick()}
+          >
+            &#8250;
+          </div>
         </div>
+
         {this.state.wantToChat1 ? (
-          <Chat
-            text_messages={this.state.text_messages}
-            profileInfo={this.state.matchData}
-            klass={this}
-            onStateChate={(data) => this.onStateChate(data)}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Chat
+              text_messages={this.state.text_messages}
+              profileInfo={this.state.matchData}
+              klass={this}
+              onStateChate={(data) => this.onStateChate(data)}
+            />
+          </Suspense>
         ) : null}
         {this.state.wantToChat2 ? (
-          <Chat
-            text_messages={this.state.text_messages}
-            profileInfo={this.state.matchData}
-            klass={this}
-            onStateChate={(data) => this.onStateChate(data)}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Chat
+              text_messages={this.state.text_messages}
+              profileInfo={this.state.matchData}
+              klass={this}
+              onStateChate={(data) => this.onStateChate(data)}
+            />
+          </Suspense>
         ) : null}
       </div>
     );
@@ -160,19 +200,26 @@ function openChat(klass, profile) {
 
 function match_cards(klass, profile) {
   return (
-    <div className="match-chat-card" onClick={() => openChat(klass, profile)}>
-      <div className="match-chat-image-container">
+    <div className="match-cards" onClick={() => openChat(klass, profile)}>
+      <div className="match-image-container">
         <img className="match-chat-image" src={profile.image} alt="the rock!" />
       </div>
-      <div className="match-chat-text-cotainer">
-        <div className="match-chat-text">{profile.name}</div>
+      <div className="match-text-cotainer">
+        <div className="match-text">{profile.name}</div>
       </div>
     </div>
   );
+}
+function mathisHardsad(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return (c / 2) * t * t + b;
+  t--;
+  return (-c / 2) * (t * (t - 2) - 1) + b;
 }
 
 export default connect(mapStateToProps, {
   loggingOut,
   regEndAction,
   LOG_IF_IN_SYSTEM,
+  getPropsIfLoggedIn,
 })(Game);

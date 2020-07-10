@@ -14,3 +14,4 @@ export const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const usersDb = firebase.firestore().collection("users");
 export const dbase = firebase.firestore().collection("messages");
 export const dbaseGetMessages = firebase.firestore().collection("messages");
+export const fbStorage = firebase.storage().ref("images");
