@@ -357,8 +357,8 @@ input:focus {
 .match-card {
   background-color: #161111;
   position: absolute;
-  height: 350px;
-  width: 375px;
+  height: 400px;
+  width: 455px;
   display: flex;
   flex-direction: column;
   justify-content: center;

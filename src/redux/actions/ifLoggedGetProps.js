@@ -21,7 +21,7 @@ export const getPropsIfLoggedIn = (email, userId, funck) => async (
             },
           });
           if (funck !== undefined) funck();
-          else console.log("BUUBS");
+          else console.log("Else");
         });
       });
   } catch (err) {

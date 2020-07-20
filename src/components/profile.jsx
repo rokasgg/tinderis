@@ -20,7 +20,7 @@ class Profile extends Component {
       name: "",
       image: "",
       city: "",
-      age: "",
+      age: { year: "", month: "", day: "" },
       loadgin: false,
       ages: new Date(),
       ageValid: false,
@@ -43,22 +43,28 @@ class Profile extends Component {
   getProps = () => {
     console.log(
       "EJOOJEOJEJOE",
-      this.props.usersData,
+      // this.props.usersData,
+      this.props.usersData.age,
       formatAge(this.props.usersData.age, "receive")
     );
     if (this.props.usersData === undefined) {
-      this.setState({ name: "", age: "", city: "", image: "" });
+      this.setState({
+        name: "",
+        age: { year: "", month: "", day: "" },
+        city: "",
+        image: "",
+      });
     } else {
       const { name, age, city, image } = this.props.usersData;
       this.setState({
         name,
-        age: formatAge(age, "receive"),
+        age: age,
         ages: new Date(`${age.year}-${age.month}-${age.day}`),
         city,
         image,
       });
 
-      formatAge(age, "receive");
+      // formatAge(age, "receive");
     }
   };
   startLoading = () => {
@@ -74,7 +80,7 @@ class Profile extends Component {
   };
   onEditBtnClick = async () => {
     const { name, age, city, image } = this.state;
-    if (image !== "" && name !== "" && age !== "" && city !== "")
+    if (image !== "" && name !== "" && age.year !== "" && city !== "")
       await usersDb
         .doc(this.props.userId)
         .update({ name, age, city, image })
@@ -82,14 +88,14 @@ class Profile extends Component {
         .catch((err) => this.setState({ errorMessage: "Įvyko klaida" }));
   };
   handleChange = (date) => {
-    let ages = this.formatBirthDate(date);
+    let formatedDate = this.formatBirthDate(date);
     this.setState({
       ages: date,
-      age: ages,
+      age: formatedDate,
     });
     this.checkAgeInput(date, "change");
     let yearsOld = formatAge(date, "change");
-    console.log("GALU GALE GAUNA METUS ", yearsOld, ages);
+    console.log("GALU GALE GAUNA METUS ", yearsOld, formatedDate);
   };
   formatBirthDate = (date) => {
     let selectedYear = `${date.getFullYear()}`;
@@ -162,7 +168,7 @@ class Profile extends Component {
       .then((link) => this.setState({ image: link, uploading: false }));
   };
   logout() {
-    console.log("vyksta kakzs?");
+    console.log("logout?");
     this.props.loggingOut(() => this.props.history.push("/"));
   }
   render() {
@@ -202,7 +208,7 @@ class Profile extends Component {
                   this.setState({ name: text.target.value });
                 }}
               />
-              <div className="profile-text">Metai</div>
+              <div className="profile-text">Gimimo diena</div>
 
               <DatePicker
                 selected={this.state.ages}
@@ -233,7 +239,7 @@ class Profile extends Component {
                 {this.state.loadgin ? (
                   <i class="fas fa-spinner"></i>
                 ) : (
-                  "Redagtuoti"
+                  "Išsaugoti"
                 )}
               </div>
             </div>

@@ -109,7 +109,7 @@ class Main extends Component {
   };
 
   logout() {
-    console.log("vyksta kakzs?");
+    console.log("Logout?");
     this.props.loggingOut(() => this.props.history.push("/"));
   }
 
@@ -132,7 +132,6 @@ class Main extends Component {
   };
 
   checkIfaMatch = (likedUsersId) => {
-    console.log("BOOB", likedUsersId);
     let likedusersData = likedUsersId;
     let thisUsersData = this.props.usersData;
     usersDb
@@ -162,7 +161,7 @@ class Main extends Component {
           dbase
             .doc()
             .collection("messages")
-            .add({ mess: "sveiksasad" })
+            .add({ mess: "test" })
             .then((res) => {
               likedusersData.chatId = res.parent.parent.id;
               thisUsersData.chatId = res.parent.parent.id;

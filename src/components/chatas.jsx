@@ -7,6 +7,7 @@ import { LOG_IF_IN_SYSTEM } from "../redux/actions/logIFinSystem";
 import { dbaseGetMessages } from "../firebase/firebase";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { scroller } from "react-scroll";
+import { calculateAge } from "../helpers/calculateAge";
 
 class Chat extends Component {
   constructor(props) {
@@ -179,7 +180,12 @@ class Chat extends Component {
               Name: {this.props.profileInfo.name}
             </div>
             <div className="chat-profile-text">
-              Age: {this.props.profileInfo ? this.props.profileInfo.age : null}
+              Age:{" "}
+              {this.props.profileInfo
+                ? typeof this.props.profileInfo.age == "object"
+                  ? calculateAge(this.props.usersData.age, "receive")
+                  : this.props.profileInfo.age
+                : null}
             </div>
             <div className="chat-profile-text">
               City:{" "}
@@ -230,7 +236,7 @@ class Chat extends Component {
                 className="newMessages"
                 onClick={() => this.scrollAfterMount()}
               >
-                New Messages {this.state.newMessagesCount}
+                Nauja žinutė {this.state.newMessagesCount}
               </div>
             ) : null}
           </div>
@@ -270,6 +276,7 @@ function mapStateToProps(state) {
 }
 
 function sendTextMessage(klass) {
+  if (klass.state.message === "") return null;
   console.log("SENDING MESSAGE", klass.state.message);
   klass.getOldMessagesNumb();
   klass.setState({ message: "" });

@@ -7,15 +7,12 @@ export const LOG_IF_IN_SYSTEM = (
   navToMain
 ) => async (dispatch) => {
   try {
-    console.log("VYKSTA ?");
     usersDb
       .where("email", "==", email)
       .get()
       .then((snap) => {
-        console.log("ka gavau?", snap.docs.length);
         if (snap.docs.length > 0) {
           snap.docs.forEach((res) => {
-            console.log("Gaunamu duomenu kiekis -> ", res);
             let usersData = res.data();
             dispatch({
               type: LOGIN_IF_IN_SYSTEM,

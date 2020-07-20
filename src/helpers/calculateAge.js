@@ -1,5 +1,4 @@
-// THIS HELPER FORMATES DATE
-export const formatAge = (date, status) => {
+export const calculateAge = (date, status) => {
   let todaysYear = new Date().getFullYear();
   let todayMonth = new Date().getMonth() + 1;
   let todaysDay = new Date().getDate();
@@ -10,25 +9,27 @@ export const formatAge = (date, status) => {
     let birthDay = parseInt(date.day);
     let differences = todaysYear - birthYear;
     if (differences > 18) {
+      const age = differences;
+
       if (birthMonth < todayMonth) {
         let olderAge = differences;
-        console.log("Age is ", olderAge);
+
         return olderAge;
       } else {
         if (birthMonth === todayMonth) {
           //You Sir might have a change!
           if (birthDay <= todaysDay) {
             let olderAge = differences;
-            console.log("Age is ", olderAge);
+
             return olderAge;
           } else {
             let ageRemains = differences - 1;
-            console.log("Age is ", ageRemains);
+
             return ageRemains;
           }
         } else {
           let ageRemains = differences - 1;
-          console.log("Age is ", ageRemains);
+
           return ageRemains;
         }
       }
@@ -37,23 +38,23 @@ export const formatAge = (date, status) => {
         //CHECK IF MONTH IS MORE THAN TODAYS MONTH
         if (birthMonth < todayMonth) {
           let olderAge = differences;
-          console.log("Age is ", olderAge);
+
           return olderAge;
         } else {
           if (birthMonth === todayMonth) {
             //You Sir might have a change!
             if (birthDay <= todaysDay) {
               let olderAge = differences;
-              console.log("Age is ", olderAge);
+
               return olderAge;
             } else {
               let ageRemains = differences - 1;
-              console.log("Age is ", ageRemains);
+
               return ageRemains;
             }
           } else {
             let ageRemains = differences - 1;
-            console.log("Age is ", ageRemains);
+
             return ageRemains;
           }
         }
@@ -68,6 +69,8 @@ export const formatAge = (date, status) => {
     let selectedDay = date.getDate();
     let difference = todaysYear - selectedYear;
     if (difference > 18) {
+      const age = difference;
+
       if (selectedMonth < todayMonth) {
         let olderAge = difference;
         console.log("Age is ", olderAge);

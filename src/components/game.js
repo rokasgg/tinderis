@@ -131,7 +131,7 @@ class Game extends Component {
                 {this.state.isItSpinning ? (
                   <Spinner animation="grow" variant="light" size="sm" />
                 ) : (
-                  "Sarasas tuscias"
+                  "Sąrašas tuščias"
                 )}
               </div>
             )}
