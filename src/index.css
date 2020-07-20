@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
 
-  background-color: wheat;
+  /* background-color: wheat; */
   height: 43px;
 }
 .nav-middleside {
@@ -44,12 +44,12 @@
   align-items: center;
   justify-content: center;
   height: 43px;
-  background-color: rgb(74, 136, 94);
+  /* background-color: rgb(74, 136, 94); */
 }
 .nav-leftSide {
   display: flex;
   flex-direction: row;
-  background-color: #457b9d;
+  /* background-color: #239eeb; */
   flex: 1;
   height: 43px;
   justify-content: center;
@@ -213,13 +213,27 @@ input:focus {
   background-color: white;
   color: black;
 }
+.addImage {
+  width: 270px;
+  height: 35px;
+  border-radius: 7px;
+  margin: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+}
+.addImage:hover {
+  opacity: 0.8;
+}
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 300px;
-  flex: 2;
 }
 .button {
   margin: 5px;
@@ -228,15 +242,18 @@ input:focus {
 .inputContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-self: center;
+  justify-items: center;
+  align-items: center;
   margin-top: 15px;
+  /* background-color: #26475c; */
 }
-.welcomeMessage {
+#imageUploadId:hover {
+  opacity: 0.8;
+}
+/* .welcomeMessage {
   display: flex;
-
   align-self: center;
-}
+} */
 
 .cards-list {
   display: flex;
@@ -790,12 +807,13 @@ input:focus {
   align-items: center;
 }
 
-.background-color {
+.background-field {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex: 1;
+  /* background-color: wheat; */
 }
 .flexBox1 {
   flex: 1;

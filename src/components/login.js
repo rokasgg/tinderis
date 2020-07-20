@@ -123,7 +123,7 @@ class Login extends Component {
         </div> */}
         <div className="flexBox1">TINDERIS</div>
 
-        <div className="background-color">
+        <div className="background-field">
           <div className="inputs">
             <input
               onChange={(txt) => this.setState({ email: txt.target.value })}

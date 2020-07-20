@@ -85,7 +85,7 @@ class Register extends Component {
     return (
       <div className="App">
         <div className="flexBox1">REGISTRACIJA</div>
-        <div className="background-color">
+        <div className="background-field">
           {/* <div className="head" style={{ color: "white" }}>
             REGISTRACIJA
           </div> */}

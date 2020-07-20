@@ -18,7 +18,7 @@ class FinalRegistrationScreen extends Component {
       ages: "",
       city: "",
       image: "",
-      imageName: "Pridėti nuotraukos URL(Nebutina)",
+      imageName: "Pridėti nuotrauką",
       nameValid: false,
       ageValid: false,
       cityInputValid: false,
@@ -157,7 +157,7 @@ class FinalRegistrationScreen extends Component {
           </div>
           <div className="nav-rightside"></div>
         </div>
-        <div className="background-color">
+        <div className="background-field">
           <div
             className="welcomeMessage"
             style={{
@@ -196,13 +196,13 @@ class FinalRegistrationScreen extends Component {
             <label
               for="imageUploadId"
               // onChange={(val) => this.setState({ image: val.target.value })}
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                paddingLeft: "15px",
-              }}
-              className="passwordInpt"
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "flex-start",
+              //   alignItems: "center",
+              //   paddingLeft: "15px",
+              // }}
+              className="addImage"
             >
               {this.state.imageName}
             </label>
